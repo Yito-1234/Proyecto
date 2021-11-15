@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Proyecto1.Models.SolicitudProducto>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Solicitud de Productos</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Nuevo Registro</a>
+</p>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                <center>
+                    <label>Cantidad</label>
+                </center>
+            </th>
+            <th>
+                <center>
+                    <label>Comida</label>
+                </center>
+            </th>
+            <th>
+                <center>
+                    <label>Producto solicitado</label>
+                </center>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdComidaNavigation.NomComida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdProductoNavigation.Nombre)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdReseta" class="btn btn-warning">Editar</a> |
+           
+                <a asp-action="Delete" asp-route-id="@item.IdReseta" class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
